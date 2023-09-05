@@ -8,6 +8,7 @@ namespace CadastroDeCompras.Domain.Entities
         public string Name { get; private set; }
         public string Document { get; private set; }
         public string Phone { get; private set; }
+        public ICollection<Purchase> Purchases { get; set; }
 
         public Person(string name, string document, string phone)
         {
@@ -16,7 +17,7 @@ namespace CadastroDeCompras.Domain.Entities
 
         public Person(int id, string name, string document, string phone)
         {
-            DomainValidationException.When(id < 0, "Id deve ser maior que zero");
+            DomainValidationException.When(id < 0, "Id deve ser maior que zero!");
             Id = id;
             Validation(name, document, phone);
         }

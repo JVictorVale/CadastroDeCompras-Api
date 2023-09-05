@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CadastroDeCompras.Application\CadastroDeCompras.Application.csproj" />
+      <ProjectReference Include="..\CadastroDeCompras.Domain\CadastroDeCompras.Domain.csproj" />
+      <ProjectReference Include="..\CadastroDeCompras.Infra.Data\CadastroDeCompras.Infra.Data.csproj" />
+    </ItemGroup>
+
+</Project>

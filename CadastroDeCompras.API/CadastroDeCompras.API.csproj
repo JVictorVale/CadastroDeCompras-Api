@@ -15,11 +15,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\CadastroDeCompras.Infra.IoC\CadastroDeCompras.Infra.IoC.csproj" />
     </ItemGroup>
+
 
 </Project>

@@ -1,4 +1,6 @@
+using CadastroDeCompras.Infra.Data.Context;
 using CadastroDeCompras.Infra.IoC;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,17 @@ builder.Services.AddInfrastructre(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);
 
 var app = builder.Build();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options
+        .UseMySql(connectionString, serverVersion)
+        .LogTo(Console.WriteLine, LogLevel.Information)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

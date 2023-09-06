@@ -5,8 +5,10 @@ using CadastroDeCompras.Domain.Repositories;
 using CadastroDeCompras.Infra.Data.Context;
 using CadastroDeCompras.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace CadastroDeCompras.Infra.IoC
 {
@@ -14,9 +16,19 @@ namespace CadastroDeCompras.Infra.IoC
     {
         public static IServiceCollection AddInfrastructre(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options => 
-                options.UseMySql(ConfigurationExtensions.GetConnectionString("")));
-
+            var connectionString = configuration.GetConnectionString("CADASTRODEVENDAS_API");
+            var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
+            
+            services.AddSingleton(d => configuration);
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options
+                    .UseMySql(connectionString, serverVersion)
+                    .LogTo(Console.WriteLine, LogLevel.Information)
+                    .EnableSensitiveDataLogging()
+                    .EnableDetailedErrors();
+            });
+            
             services.AddScoped<IPersonRepository, PersonRepository>();
             return services;
         }

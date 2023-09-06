@@ -8,22 +8,22 @@ namespace CadastroDeCompras.Infra.Data.Maps
     {
         public void Configure(EntityTypeBuilder<Purchase> builder)
         {
-            builder.ToTable("Compra");
+            builder.ToTable("compra");
 
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-                .HasColumnName("Idcompra")
+                .HasColumnName("idcompra")
                 .UseMySqlIdentityColumn();
 
             builder.Property(x => x.ProductId)
-                .HasColumnName("Idproduto");
+                .HasColumnName("idproduto");
 
             builder.Property(x => x.PersonId)
-                .HasColumnName("Idpessoa");
+                .HasColumnName("idpessoa");
 
             builder.Property(x => x.Date)
-                .HasColumnName("Datacompra");
+                .HasColumnName("datacompra");
 
             builder.HasOne(x => x.Person)
                 .WithMany(x => x.Purchases);

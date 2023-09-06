@@ -13,17 +13,17 @@ namespace CadastroDeCompras.Infra.Data.Maps
             builder.HasKey(c => c.Id);
             
             builder.Property(c => c.Id)
-                .HasColumnName("Idpessoa")
+                .HasColumnName("idpessoa")
                 .UseMySqlIdentityColumn();
             
             builder.Property(c => c.Document)
-                .HasColumnName("Documento");
+                .HasColumnName("documento");
             
             builder.Property(c => c.Name)
-                .HasColumnName("Nome");
+                .HasColumnName("nome");
             
             builder.Property(c => c.Phone)
-                .HasColumnName("Celular");
+                .HasColumnName("celular");
             
             builder.HasMany(c => c.Purchases)
                 .WithOne(p => p.Person)

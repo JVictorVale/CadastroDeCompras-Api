@@ -2,7 +2,7 @@ using CadastroDeCompras.Domain.Entities;
 
 namespace CadastroDeCompras.Domain.Repositories;
 
-public interface IPersonReposiotry
+public interface IPersonRepository
 {
     Task<Person> GetByIdAsync(int id);
     Task<ICollection<Person>> GetPeopleAsync();

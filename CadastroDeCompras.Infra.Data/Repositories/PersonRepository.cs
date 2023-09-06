@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CadastroDeCompras.Infra.Data.Repositories
 {
-    public class PersonRepository : IPersonReposiotry
+    public class PersonRepository : IPersonRepository
     {
         private readonly ApplicationDbContext _db;
             

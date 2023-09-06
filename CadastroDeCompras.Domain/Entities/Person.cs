@@ -13,6 +13,7 @@ namespace CadastroDeCompras.Domain.Entities
         public Person(string name, string document, string phone)
         {
             Validation(name, document, phone);
+            Purchases = new List<Purchase>();
         }
 
         public Person(int id, string name, string document, string phone)
@@ -20,6 +21,7 @@ namespace CadastroDeCompras.Domain.Entities
             DomainValidationException.When(id < 0, "Id deve ser maior que zero!");
             Id = id;
             Validation(name, document, phone);
+            Purchases = new List<Purchase>();
         }
 
         private void Validation(string name, string document, string phone)

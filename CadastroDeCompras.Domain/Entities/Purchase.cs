@@ -12,27 +12,26 @@ namespace CadastroDeCompras.Domain.Entities
         public Product Product { get; set; }
 
 
-        public Purchase(int productId, int personId, DateTime date)
+        public Purchase(int productId, int personId)
         {
-            Validation(productId, personId, date);
+            Validation(productId, personId);
         }
 
-        public Purchase(int id, int productId, int personId, DateTime date, Person person, Product product)
+        public Purchase(int id, int productId, int personId)
         {
             DomainValidationException.When(id < 0, "O Id deve ser informado!");
             Id = id;
-            Validation(productId, personId, date);
+            Validation(productId, personId);
         }
 
-        public void Validation(int produtId, int personId, DateTime? date)
+        public void Validation(int produtId, int personId)
         {
             DomainValidationException.When(produtId < 0, "Id produto deve ser informado!");
             DomainValidationException.When(personId < 0, "Id pessoa deve ser informado!");
-            DomainValidationException.When(date.HasValue, "Data da compra deve ser informada!");
 
             ProductId = produtId;
             PersonId = personId;
-            Date = date.Value;
+            Date = DateTime.Now;
         }
         
     }

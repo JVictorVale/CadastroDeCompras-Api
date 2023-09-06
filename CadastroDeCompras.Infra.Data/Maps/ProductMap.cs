@@ -13,7 +13,7 @@ namespace CadastroDeCompras.Infra.Data.Maps
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
-                .HasColumnName("IdProduto")
+                .HasColumnName("Idproduto")
                 .UseMySqlIdentityColumn();
 
             builder.Property(x => x.Name)

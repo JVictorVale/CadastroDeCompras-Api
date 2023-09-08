@@ -6,6 +6,7 @@ using CadastroDeCompras.Infra.Data.Context;
 using CadastroDeCompras.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -16,7 +17,7 @@ namespace CadastroDeCompras.Infra.IoC
     {
         public static IServiceCollection AddInfrastructre(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("CADASTRODEVENDAS_API");
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
             var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
             
             services.AddSingleton(d => configuration);

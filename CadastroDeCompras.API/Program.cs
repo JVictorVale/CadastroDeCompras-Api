@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using CadastroDeCompras.Infra.Data.Context;
 using CadastroDeCompras.Infra.IoC;
 using Microsoft.EntityFrameworkCore;
@@ -12,19 +13,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddInfrastructre(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);
+builder.Services.AddMvc().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
 
 var app = builder.Build();
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-var serverVersion = new MySqlServerVersion(ServerVersion.AutoDetect(connectionString));
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options
-        .UseMySql(connectionString, serverVersion)
-        .LogTo(Console.WriteLine, LogLevel.Information)
-        .EnableSensitiveDataLogging()
-        .EnableDetailedErrors();
-});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

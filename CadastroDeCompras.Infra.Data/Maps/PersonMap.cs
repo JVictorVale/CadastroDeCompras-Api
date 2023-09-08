@@ -8,7 +8,7 @@ namespace CadastroDeCompras.Infra.Data.Maps
     {
         public void Configure(EntityTypeBuilder<Person> builder)
         {
-            builder.ToTable("Pessoa");
+            builder.ToTable("pessoa");
             
             builder.HasKey(c => c.Id);
             

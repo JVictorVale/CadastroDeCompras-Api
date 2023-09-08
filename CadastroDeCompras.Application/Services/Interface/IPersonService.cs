@@ -1,4 +1,5 @@
 using CadastroDeCompras.Application.DTOs;
+using CadastroDeCompras.Domain.Entities;
 
 namespace CadastroDeCompras.Application.Services.Interface
 {
@@ -7,5 +8,7 @@ namespace CadastroDeCompras.Application.Services.Interface
         Task<ResultService<PersonDTO>> CreateAsync(PersonDTO personDTO);
         Task<ResultService<ICollection<PersonDTO>>> GetAsync();
         Task<ResultService<PersonDTO>> GetByIdAsync(int id);
+        Task<ResultService> UpdateAsync(PersonDTO personDTO);
+        Task<ResultService> DeleteAsync(int id);
     }
 }

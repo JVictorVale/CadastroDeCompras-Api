@@ -10,17 +10,17 @@ namespace CadastroDeCompras.Application.DTOs.Validations
             RuleFor(x => x.Document)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage("Document deve ser informado!");
+                .WithMessage("Documento deve ser informado!");
 
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage("Name deve ser informado!");
+                .WithMessage("Nome deve ser informado!");
 
             RuleFor(x => x.Phone)
                 .NotEmpty()
                 .NotNull()
-                .WithMessage("Phone deve ser informado!");
+                .WithMessage("Celular deve ser informado!");
         }
     }
 }

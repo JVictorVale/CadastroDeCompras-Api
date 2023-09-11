@@ -11,7 +11,6 @@ public class PersonService : IPersonService
 {
     private readonly IPersonRepository _personRepository;
     private readonly IMapper _mapper;
-    private IPersonService _personServiceImplementation;
 
     public PersonService(IPersonRepository personRepository, IMapper mapper)
     {
@@ -26,7 +25,7 @@ public class PersonService : IPersonService
 
         var result = new PersonDTOValidator().Validate(personDTO);
         if (!result.IsValid)
-            return ResultService.RequestError<PersonDTO>("Problemas de validade!", result);
+            return ResultService.RequestError<PersonDTO>("Problemas na validação!", result);
 
         var person = _mapper.Map<Person>(personDTO);
         var data = await _personRepository.CreateAsync(person);

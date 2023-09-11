@@ -31,6 +31,7 @@ namespace CadastroDeCompras.Infra.IoC
             });
             
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             return services;
         }
 
@@ -38,6 +39,7 @@ namespace CadastroDeCompras.Infra.IoC
         {
             services.AddAutoMapper(typeof(DomainToDtoMapping));
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IProductService, ProductService>();
             return services;
         }
     }

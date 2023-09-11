@@ -50,11 +50,11 @@ public class PersonService : IPersonService
     public async Task<ResultService> UpdateAsync(PersonDTO personDTO)
     {
         if (personDTO == null)
-            return ResultService.Fail("Dados devem ser informados!");
+            return ResultService.Fail("Dados da pessoa devem ser informados!");
 
         var validation = new PersonDTOValidator().Validate(personDTO);
         if (!validation.IsValid)
-            return ResultService.RequestError("Problema com a validação dos dados informado!", validation);
+            return ResultService.RequestError("Problema de validação dos dados informados!", validation);
 
         var person = await _personRepository.GetByIdAsync(personDTO.Id);
         if(person == null)
@@ -63,7 +63,7 @@ public class PersonService : IPersonService
         person = _mapper.Map<PersonDTO, Person>(personDTO, person);
 
         await _personRepository.EditAsync(person);
-        return ResultService.Ok("Pessoa editada");
+        return ResultService.Ok("Pessoa editada!");
     }
 
     public async Task<ResultService> DeleteAsync(int id)

@@ -1,6 +1,7 @@
 using CadastroDeCompras.Domain.Entities;
 using CadastroDeCompras.Domain.Repositories;
 using CadastroDeCompras.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace CadastroDeCompras.Infra.Data.Repositories
 {
@@ -15,12 +16,20 @@ namespace CadastroDeCompras.Infra.Data.Repositories
 
         public async Task<Purchase> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var purchase = await _db.Purchases
+                .Include(x => x.Product)
+                .Include(x => x.Person)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            return purchase;
         }
 
         public async Task<ICollection<Purchase>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _db.Purchases
+                .Include(x => x.Product)
+                .Include(x => x.Person)
+                .ToListAsync();
         }
 
         public async Task<Purchase> CreateAsync(Purchase purchase)
@@ -32,22 +41,31 @@ namespace CadastroDeCompras.Infra.Data.Repositories
 
         public async Task EditAsync(Purchase purchase)
         {
-            throw new NotImplementedException();
+            _db.Update(purchase);
+            await _db.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Purchase purchase)
         {
-            throw new NotImplementedException();
+            _db.Remove(purchase);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<ICollection<Purchase>> GetByPersonIdAsync(int personId)
         {
-            throw new NotImplementedException();
+            return await _db.Purchases
+                .Include(x => x.Product)
+                .Include(x => x.Person)
+                .Where(x => x.PersonId == personId)
+                .ToListAsync();
         }
 
         public async Task<ICollection<Purchase>> GetByProductIdAsync(int productId)
         {
-            throw new NotImplementedException();
+            return await _db.Purchases
+                .Include(x => x.Product)
+                .Include(x => x.Person)
+                .Where(x => x.ProductId == productId).ToListAsync();
         }
     }
 }

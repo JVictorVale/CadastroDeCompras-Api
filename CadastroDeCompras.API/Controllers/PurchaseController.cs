@@ -56,5 +56,34 @@ namespace CadastroDeCompras.API.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpPut]
+        public async Task<ActionResult> EditAsync([FromBody] PurchaseDTO purchaseDTO)
+        {
+            try
+            {
+                var result = await _purchaseService.UpdateAsync(purchaseDTO);
+                if (result.IsSuccess)
+                    return Ok(result);
+
+                return BadRequest(result);
+            }
+            catch (DomainValidationException ex)
+            {
+                var result = ResultService.Fail(ex.Message);
+                return BadRequest(result);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var result = await _purchaseService.GetByIdAsync(id);
+            if (result.IsSuccess)
+                return Ok(result);
+
+            return BadRequest(result);
+        }
     }
 }

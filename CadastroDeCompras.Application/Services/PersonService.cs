@@ -25,7 +25,7 @@ public class PersonService : IPersonService
 
         var result = new PersonDTOValidator().Validate(personDTO);
         if (!result.IsValid)
-            return ResultService.RequestError<PersonDTO>("Problemas na validação!", result);
+            return ResultService.RequestError<PersonDTO>("Problema de validação dos dados informados!", result);
 
         var person = _mapper.Map<Person>(personDTO);
         var data = await _personRepository.CreateAsync(person);

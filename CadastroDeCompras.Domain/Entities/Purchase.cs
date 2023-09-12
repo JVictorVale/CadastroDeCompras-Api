@@ -23,6 +23,13 @@ namespace CadastroDeCompras.Domain.Entities
             Id = id;
             Validation(productId, personId);
         }
+        
+        public void Edit(int id, int productId, int personId)
+        {
+            DomainValidationException.When(id < 0, "O Id deve ser informado!");
+            Id = id;
+            Validation(productId, personId);
+        }
 
         public void Validation(int produtId, int personId)
         {

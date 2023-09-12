@@ -26,8 +26,8 @@ namespace CadastroDeCompras.Domain.Entities
 
         public void Validation(int produtId, int personId)
         {
-            DomainValidationException.When(produtId < 0, "Id produto deve ser informado!");
-            DomainValidationException.When(personId < 0, "Id pessoa deve ser informado!");
+            DomainValidationException.When(produtId <= 0, "Id produto deve ser informado!");
+            DomainValidationException.When(personId <= 0, "Id pessoa deve ser informado!");
 
             ProductId = produtId;
             PersonId = personId;

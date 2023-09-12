@@ -23,6 +23,7 @@ namespace CadastroDeCompras.Infra.Data.Maps
                 .HasColumnName("idpessoa");
 
             builder.Property(x => x.Date)
+                .HasColumnType("date")
                 .HasColumnName("datacompra");
 
             builder.HasOne(x => x.Person)

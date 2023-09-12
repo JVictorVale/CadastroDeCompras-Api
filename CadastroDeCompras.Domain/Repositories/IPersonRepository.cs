@@ -9,4 +9,5 @@ public interface IPersonRepository
     Task<Person> CreateAsync(Person person);
     Task EditAsync(Person person);
     Task DeleteAsync(Person person);
+    Task<int> GetIdByDocumentAsync(string document);
 }

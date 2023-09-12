@@ -26,7 +26,12 @@ namespace CadastroDeCompras.Infra.Data.Repositories
             _db.Remove(person);
             await _db.SaveChangesAsync();
         }
-        
+
+        public async Task<int> GetIdByDocumentAsync(string document)
+        {
+            return (await _db.People.FirstOrDefaultAsync(x => x.Document == document))?.Id ?? 0;
+        }
+
         public async Task EditAsync(Person person)
         {
             _db.Update(person);

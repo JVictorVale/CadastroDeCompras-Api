@@ -6,7 +6,7 @@ namespace CadastroDeCompras.Domain.Repositories
         public int PageSize { get; set; }
         public string OrderByProperty { get; set; }
 
-        public PagedBaseRequest(int page, int pageSize, string orderByProperty)
+        public PagedBaseRequest()
         {
             Page = 1;
             PageSize = 10;

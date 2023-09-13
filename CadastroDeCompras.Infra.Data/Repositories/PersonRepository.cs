@@ -1,4 +1,5 @@
 using CadastroDeCompras.Domain.Entities;
+using CadastroDeCompras.Domain.FiltersDb;
 using CadastroDeCompras.Domain.Repositories;
 using CadastroDeCompras.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,16 @@ namespace CadastroDeCompras.Infra.Data.Repositories
         public async Task<int> GetIdByDocumentAsync(string document)
         {
             return (await _db.People.FirstOrDefaultAsync(x => x.Document == document))?.Id ?? 0;
+        }
+
+        public async Task<PagedBaseResponse<Person>> GetPagedAsync(PersonFilterDb request)
+        {
+            var people = _db.People.AsQueryable();
+            if (!string.IsNullOrEmpty(request.Name))
+                people = people.Where(x => x.Name.Contains(request.Name));
+
+            return await PagedBaseResponseHelper
+                .GetResponseAsync<PagedBaseResponse<Person>, Person>(people,request);
         }
 
         public async Task EditAsync(Person person)

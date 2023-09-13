@@ -3,6 +3,7 @@ using CadastroDeCompras.Application.DTOs;
 using CadastroDeCompras.Application.DTOs.Validations;
 using CadastroDeCompras.Application.Services.Interface;
 using CadastroDeCompras.Domain.Entities;
+using CadastroDeCompras.Domain.FiltersDb;
 using CadastroDeCompras.Domain.Repositories;
 
 namespace CadastroDeCompras.Application.Services;
@@ -74,5 +75,14 @@ public class PersonService : IPersonService
 
         await _personRepository.DeleteAsync(person);
         return ResultService.Ok($"Pessoa do id: {id} foi deletada!");
+    }
+
+    public async Task<ResultService<PagedBaseResponseDTO<PersonDTO>>> GetPagedAsync(PersonFilterDb personFilterDb)
+    {
+        var peoplePaged = await _personRepository.GetPagedAsync(personFilterDb);
+        var result =
+            new PagedBaseResponseDTO<PersonDTO>(peoplePaged.TotalRegisters,
+                                            _mapper.Map<List<PersonDTO>>(peoplePaged.Data));
+        return ResultService.Ok(result);
     }
 }

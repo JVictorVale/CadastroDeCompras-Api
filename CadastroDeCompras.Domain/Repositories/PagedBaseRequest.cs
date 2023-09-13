@@ -1,0 +1,16 @@
+namespace CadastroDeCompras.Domain.Repositories
+{
+    public class PagedBaseRequest
+    {
+        public int Page { get; set; }
+        public int PageSize { get; set; }
+        public string OrderByProperty { get; set; }
+
+        public PagedBaseRequest(int page, int pageSize, string orderByProperty)
+        {
+            Page = 1;
+            PageSize = 10;
+            OrderByProperty = "Id";
+        }
+    }
+}

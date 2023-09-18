@@ -18,7 +18,7 @@ namespace CadastroDeCompras.Domain.Entities
 
         public Product(int id, string name, string codErp, decimal price)
         {
-            DomainValidationException.When(id < 0, "Id do produto deve ser informado!");
+            DomainValidationException.When(id <= 0, "Id do produto deve ser informado!");
             Id = id;
             Validation(name, codErp, price);
             Purchases = new List<Purchase>();

@@ -19,7 +19,7 @@ namespace CadastroDeCompras.Domain.Entities
 
         public Purchase(int id, int productId, int personId)
         {
-            DomainValidationException.When(id < 0, "O Id deve ser informado!");
+            DomainValidationException.When(id <= 0, "Id da compra deve ser informado!");
             Id = id;
             Validation(productId, personId);
         }

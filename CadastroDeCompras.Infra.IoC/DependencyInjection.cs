@@ -1,7 +1,9 @@
 using CadastroDeCompras.Application.Mappings;
 using CadastroDeCompras.Application.Services;
 using CadastroDeCompras.Application.Services.Interface;
+using CadastroDeCompras.Domain.Authentication;
 using CadastroDeCompras.Domain.Repositories;
+using CadastroDeCompras.Infra.Data.Authentication;
 using CadastroDeCompras.Infra.Data.Context;
 using CadastroDeCompras.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +36,8 @@ namespace CadastroDeCompras.Infra.IoC
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ITokenGeneretor, TokenGenerator>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
 
@@ -43,6 +47,7 @@ namespace CadastroDeCompras.Infra.IoC
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IPurchaseService, PurchaseService>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
     }

@@ -9,11 +9,13 @@ namespace CadastroDeCompras.Domain.Entities
         public string Document { get; private set; }
         public string Phone { get; private set; }
         public ICollection<Purchase> Purchases { get; set; }
+        public ICollection<PersonImage> PersonImages { get; private set; }
 
         public Person(string name, string document, string phone)
         {
             Validation(name, document, phone);
             Purchases = new List<Purchase>();
+            PersonImages = new List<PersonImage>();
         }
 
         public Person(int id, string name, string document, string phone)
@@ -22,6 +24,7 @@ namespace CadastroDeCompras.Domain.Entities
             Id = id;
             Validation(name, document, phone);
             Purchases = new List<Purchase>();
+            PersonImages = new List<PersonImage>();
         }
 
         private void Validation(string name, string document, string phone)

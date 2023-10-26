@@ -19,9 +19,9 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Api Dotnet 6",
+        Title = "API .NET 6",
         Version = "v1",
-        Description = "Criando uma api em dotnet core 6"
+        Description = "Cadastro de pessoas,produtos e vendas"
     });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
